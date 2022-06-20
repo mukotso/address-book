@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+
+}
+.container >.card{
+  background-color: rgba(154, 235, 235, 0.855);
+  padding: 15px;
+}
+.fa-user{
+  font-size: 24px;
+}
+.btn-green{
+  background-color:#00a082; 
+  color:white
+}
+.fa-plus-circle{
+  color:#fff; 
+  font-size:25px;
+}
+
