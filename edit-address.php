@@ -1,41 +1,14 @@
-<?php require('header.php'); ?>
-<?php include_once('api/edit.php'); ?>
-<?php include_once('api/update.php'); ?>
-<?php include_once('api/cities.php'); ?>
-<style>
-    .container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        grid-gap: 20px;
-
-    }
-
-    .container > .card {
-        background-color: rgba(154, 235, 235, 0.855);
-        padding: 15px;
-    }
-
-    .fa-user {
-        font-size: 24px;
-    }
-
-    .btn-green {
-        background-color: #00a082;
-        color: white
-    }
-
-    .fa-plus-circle {
-        color: #fff;
-        font-size: 25px;
-    }
-</style>
+<?php require_once('common/header.php'); ?>
+<?php require_once('api/edit-addresses.php'); ?>
+<?php require_once('api/update-addresses.php'); ?>
+<?php require_once('api/cities.php'); ?>
 
 <div class="text-center">
-    <a href="../index.php" class="btn btn-sm mb-2 btn-green"> VIEW ALL ADDRESSES
+    <a href="index.php" class="btn btn-sm mb-2 btn-green"> VIEW ALL ADDRESSES
     </a>
 
-    <?php include_once('success.php'); ?>
-    <?php include_once('errors.php'); ?>
+    <?php require_once('common/success.php'); ?>
+    <?php require_once('common/errors.php'); ?>
 </div>
 <div class="row container">
 
@@ -45,13 +18,14 @@
             <h5 class="text-center">EDIT ADDRESS DETAILS</h5>
         </div>
         <div class="card-body">
-            <?php include_once('errors.php'); ?>
+            <?php require_once('common/success.php'); ?>
+            <?php require_once('common/errors.php'); ?>
 
             <?php
             while ($rows = $addressDetails->fetch_assoc())
             {
             ?>
-            <form action="edit.php" method="POST">
+            <form action="edit-address.php" method="POST">
                 <div class="form-group">
                     <label for="first_name" class="col-form-label text-md-right">First name</label>
                     <input type="text" class="form-control" name="first_name" placeholder="first name" required value="<?php echo $rows['first_name'];?>">
@@ -90,11 +64,11 @@
                             ?>
                             <option
                                     <?php
-                                    if($rows['id'] == $row['id']) {
+                                    if($rows['city_id'] == $row['city_id']) {
                                         echo 'selected';
                                     }
                                     ?>
-                                    value=<?php echo($row['id']);?> ><?php echo($row['name']);?></option>
+                                    value=<?php echo($row['city_id']);?> ><?php echo($row['name']);?></option>
                             <?php
                         }
                         ?>

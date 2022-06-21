@@ -1,13 +1,11 @@
 <?php
-if(isset ($_SESSION['errors'])):
+if( isset($_SESSION['errors']) && $_SESSION['errors'] != ""){
     ?>
     <div class=" alert alert-danger" role="alert">
         <?php
         $msgs=$_SESSION['errors'];
-
-        echo $msgs;
-
+             echo $msgs;
         unset($_SESSION['errors']);
         ?>
     </div>
-<?php endif ?>
+<?php } ?>

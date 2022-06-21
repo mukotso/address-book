@@ -8,8 +8,8 @@ try {
         $addressDetails = mysqli_query($db, $query);
     }
 } catch (Exception $e) {
-    http_response_code(400);
-    die('Error processing bad or malformed request');
+    $_SESSION['errors'] = "There was an error try again";
+    header('Location: ../edit-address.php');
 }
 
 

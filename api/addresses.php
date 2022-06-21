@@ -1,16 +1,13 @@
 <?php
-require_once ('db_connection.php');
-session_start();
+require_once('db_connection.php');
+
+
 $first_name = "";
 $last_name = "";
 $email = "";
 $street = "";
 $city_id = "";
 $zip_code = "";
-$errors = array();
-
-
-
 // ADD NEW  ADDRESS
 if (isset($_POST['add_address'])) {
     // receive all input values from the form
@@ -23,29 +20,27 @@ if (isset($_POST['add_address'])) {
 
 
     // add address if there is no errors
-
-        $query = "INSERT INTO addresses (first_name,last_name,email,street,city_id,zip_code) 
+    $query = "INSERT INTO addresses (first_name,last_name,email,street,city_id,zip_code) 
 					  VALUES('$first_name','$last_name','$email','$street','$city_id','$zip_code')";
 
-        if (mysqli_query($db, $query)) {
+    if (mysqli_query($db, $query)) {
 
-            $_SESSION['success_messages'] = "You have Successfully Created an address";
-            header('Location: ../index.php');
-        } else {
-            $_SESSION['error_messages'] = "there was an error try again";
-        }
-
-
+        $_SESSION['success'] = "You have Successfully Created an address";
+        header('Location: index.php');
+    } else {
+        $_SESSION['errors'] = "There was an error try again";
+        header('Location: add-address.php');
+    }
 
 
 }
-        $query = "SELECT * 
+//fetch all addresses
+$query = "SELECT * 
         FROM addresses 
         INNER JOIN  cities ON addresses.city_id=cities.city_id";
         $addresses = mysqli_query($db, $query);
 
-
-        ?>
+?>
 
 
 
